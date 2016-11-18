@@ -12,6 +12,9 @@ class Course(Model):
     description = TextField()
     created_at = DateTimeField(default = datetime.datetime.now())
 
+    def to_json(self):
+        return {'id' : self.id, 'title' : self.title, 'description' : self.description}
+
 def create_course():
     title = 'Curso Ejemplo'
     description = 'Descripcion del curso'
