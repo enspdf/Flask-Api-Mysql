@@ -15,6 +15,14 @@ class Course(Model):
     def to_json(self):
         return {'id' : self.id, 'title' : self.title, 'description' : self.description}
 
+    @classmethod
+    def new(cls, title, description):
+        try:
+            return cls.create(title = title, description = description)
+        except IntegrityError:
+            print("Error de integridad")
+            return None
+
 def create_course():
     title = 'Curso Ejemplo'
     description = 'Descripcion del curso'
