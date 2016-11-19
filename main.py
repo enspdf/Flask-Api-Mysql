@@ -72,6 +72,14 @@ def put_course(course_id):
     else:
         abort(422)
 
+@app.route('/codigo/api/v1.0/courses/<int:course_id>', methods=['DELETE'])
+def delete_course(course_id):
+    course = try_course(course_id)
+    if course.delete_instance():
+        return jsonify( generate_response(data = {}) )
+    else:
+        abort(422)
+
 def try_course(course_id):
     try:
         return Course.get(Course.id == course_id)
